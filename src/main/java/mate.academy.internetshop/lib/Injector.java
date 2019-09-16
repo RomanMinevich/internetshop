@@ -42,7 +42,7 @@ public class Injector {
             } else if (checkDependency(field, BucketServiceImpl.class)) {
                 field.setAccessible(true);
                 field.set(null, Factory.getBucketService());
-            } else if (checkDependency(field, BucketServiceImpl.class)) {
+            } else if (checkDependency(field, OrderServiceImpl.class)) {
                 field.setAccessible(true);
                 field.set(null, Factory.getOrderService());
             } else if (checkDependency(field, UserServiceImpl.class)) {
@@ -60,7 +60,7 @@ public class Injector {
             } else if (checkDependency(field, BucketDaoImpl.class)) {
                 field.setAccessible(true);
                 field.set(null, Factory.getBucketDao());
-            } else if (checkDependency(field, UserDaoImpl.class)) {
+            } else if (checkDependency(field, OrderDaoImpl.class)) {
                 field.setAccessible(true);
                 field.set(null, Factory.getOrderDao());
             } else if (checkDependency(field, UserDaoImpl.class)) {
