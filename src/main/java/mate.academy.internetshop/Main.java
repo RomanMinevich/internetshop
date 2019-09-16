@@ -81,7 +81,7 @@ public class Main {
                 .map(Order::getItems)
                 .forEach(System.out::println);
 
-        System.out.println("---------");
+        System.out.println();
 
         List<Order> sophieOrders = userService.getOrders(sophie.getId());
         sophieOrders
