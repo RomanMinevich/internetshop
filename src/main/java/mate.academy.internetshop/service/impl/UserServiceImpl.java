@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(Long id) {
-        return userDao.read(id);
+    public User get(Long id) {
+        return userDao.get(id);
     }
 
     @Override
@@ -35,6 +35,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Order> getOrders(Long id) {
-        return read(id).getOrders();
+        return get(id).getOrders();
     }
 }

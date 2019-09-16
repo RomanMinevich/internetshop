@@ -23,8 +23,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order read(Long id) {
-        return orderDao.read(id);
+    public Order get(Long id) {
+        return orderDao.get(id);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order completeOrder(List<Item> items, Long userId) {
         Order order = new Order(items, userId);
-        User user = userDao.read(userId);
+        User user = userDao.get(userId);
         user.getOrders().add(order);
         userDao.update(user);
         return order;

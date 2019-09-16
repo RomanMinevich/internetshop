@@ -23,7 +23,7 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public Item read(Long id) {
+    public Item get(Long id) {
         return Storage.items
                 .stream()
                 .filter(element -> element.getId().equals(id))
@@ -45,7 +45,7 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public Item delete(Long id) {
-        Item item = read(id);
+        Item item = get(id);
         Storage.items.removeIf(element -> element.equals(item));
         return item;
     }

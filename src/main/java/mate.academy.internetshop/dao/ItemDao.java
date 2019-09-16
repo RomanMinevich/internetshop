@@ -6,7 +6,7 @@ public interface ItemDao {
 
     Item create(Item item);
 
-    Item read(Long id);
+    Item get(Long id);
 
     Item update(Item item);
 

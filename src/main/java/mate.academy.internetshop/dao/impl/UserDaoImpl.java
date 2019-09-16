@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User read(Long id) {
+    public User get(Long id) {
         return Storage.users
                 .stream()
                 .filter(element -> element.getId().equals(id))
@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User delete(Long id) {
-        User user = read(id);
+        User user = get(id);
         Storage.users.removeIf(element -> element.equals(user));
         return user;
     }

@@ -36,17 +36,17 @@ public class Injector {
 
     private static void injectToMain() throws IllegalAccessException {
         for (Field field : getAnnotatedFields(Main.class)) {
-            if (field.getType().equals(ItemService.class)
-                    && ItemServiceImpl.class.isAnnotationPresent(Service.class)) {
+            if (checkDependency(field, ItemServiceImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getItemService());
-            } else if (field.getType().equals(BucketService.class)
-                    && BucketServiceImpl.class.isAnnotationPresent(Service.class)) {
+            } else if (checkDependency(field, BucketServiceImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getBucketService());
-            } else if (field.getType().equals(OrderService.class)
-                    && OrderServiceImpl.class.isAnnotationPresent(Service.class)) {
+            } else if (checkDependency(field, BucketServiceImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getOrderService());
-            } else if (field.getType().equals(UserService.class)
-                    && UserServiceImpl.class.isAnnotationPresent(Service.class)) {
+            } else if (checkDependency(field, UserServiceImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getUserService());
             }
         }
@@ -54,17 +54,17 @@ public class Injector {
 
     private static void injectToService(Class service) throws IllegalAccessException {
         for (Field field : getAnnotatedFields(service)) {
-            if (field.getType().equals(ItemDao.class)
-                    && ItemDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            if (checkDependency(field, ItemDaoImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getItemDao());
-            } else if (field.getType().equals(BucketDao.class)
-                    && BucketDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            } else if (checkDependency(field, BucketDaoImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getBucketDao());
-            } else if (field.getType().equals(OrderDao.class)
-                    && OrderDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            } else if (checkDependency(field, UserDaoImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getOrderDao());
-            } else if (field.getType().equals(UserDao.class)
-                    && UserDaoImpl.class.isAnnotationPresent(Dao.class)) {
+            } else if (checkDependency(field, UserDaoImpl.class)) {
+                field.setAccessible(true);
                 field.set(null, Factory.getUserDao());
             }
         }
@@ -73,7 +73,13 @@ public class Injector {
     private static List<Field> getAnnotatedFields(Class dependant) {
         return of(dependant.getDeclaredFields())
                 .filter(field -> field.isAnnotationPresent(Inject.class))
-                .peek(field -> field.setAccessible(true))
                 .collect(Collectors.toList());
+    }
+
+    private static boolean checkDependency(Field annotatedField, Class dependency) {
+        return of(dependency.getInterfaces())
+                .anyMatch(dependencyInt -> dependencyInt.equals(annotatedField.getType()))
+                && (dependency.isAnnotationPresent(Service.class)
+                || dependency.isAnnotationPresent(Dao.class));
     }
 }

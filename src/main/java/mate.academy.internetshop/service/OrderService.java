@@ -8,7 +8,7 @@ public interface OrderService {
 
     Order create(Order order);
 
-    Order read(Long id);
+    Order get(Long id);
 
     Order update(Order order);
 

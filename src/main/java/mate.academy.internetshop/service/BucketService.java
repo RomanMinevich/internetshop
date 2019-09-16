@@ -8,7 +8,7 @@ public interface BucketService {
 
     Bucket create(Bucket bucket);
 
-    Bucket read(Long id);
+    Bucket get(Long id);
 
     Bucket update(Bucket bucket);
 

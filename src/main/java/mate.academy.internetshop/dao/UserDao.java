@@ -6,7 +6,7 @@ public interface UserDao {
 
     User create(User user);
 
-    User read(Long id);
+    User get(Long id);
 
     User update(User user);
 

@@ -23,7 +23,7 @@ public class BucketDaoImpl implements BucketDao {
     }
 
     @Override
-    public Bucket read(Long id) {
+    public Bucket get(Long id) {
         return Storage.buckets
                 .stream()
                 .filter(element -> element.getId().equals(id))
@@ -45,7 +45,7 @@ public class BucketDaoImpl implements BucketDao {
 
     @Override
     public Bucket delete(Long id) {
-        Bucket bucket = read(id);
+        Bucket bucket = get(id);
         Storage.buckets.removeIf(element -> element.equals(bucket));
         return bucket;
     }
