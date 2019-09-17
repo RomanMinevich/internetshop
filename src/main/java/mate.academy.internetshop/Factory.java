@@ -18,36 +18,68 @@ import mate.academy.internetshop.service.impl.OrderServiceImpl;
 import mate.academy.internetshop.service.impl.UserServiceImpl;
 
 public class Factory {
+    private static ItemDao itemDao;
+    private static BucketDao bucketDao;
+    private static OrderDao orderDao;
+    private static UserDao userDao;
+    private static ItemService itemService;
+    private static BucketService bucketService;
+    private static OrderService orderService;
+    private static UserService userService;
 
     public static ItemDao getItemDao() {
-        return new ItemDaoImpl();
+        if (itemDao == null) {
+            itemDao = new ItemDaoImpl();
+        }
+        return itemDao;
     }
 
     public static BucketDao getBucketDao() {
-        return new BucketDaoImpl();
+        if (bucketDao == null) {
+           bucketDao = new BucketDaoImpl();
+        }
+        return bucketDao;
     }
 
     public static OrderDao getOrderDao() {
-        return new OrderDaoImpl();
+        if (orderDao == null) {
+            orderDao = new OrderDaoImpl();
+        }
+        return orderDao;
     }
 
     public static UserDao getUserDao() {
-        return new UserDaoImpl();
+        if (userDao == null) {
+            userDao = new UserDaoImpl();
+        }
+        return userDao;
     }
 
     public static ItemService getItemService() {
-        return new ItemServiceImpl();
+        if (itemService == null) {
+            itemService = new ItemServiceImpl();
+        }
+        return itemService;
     }
 
     public static BucketService getBucketService() {
-        return new BucketServiceImpl();
+        if (bucketService == null) {
+            bucketService = new BucketServiceImpl();
+        }
+        return bucketService;
     }
 
     public static OrderService getOrderService() {
-        return new OrderServiceImpl();
+        if (orderService == null) {
+            orderService = new OrderServiceImpl();
+        }
+        return orderService;
     }
 
     public static UserService getUserService() {
-        return new UserServiceImpl();
+        if (userService == null) {
+            userService = new UserServiceImpl();
+        }
+        return userService;
     }
 }
