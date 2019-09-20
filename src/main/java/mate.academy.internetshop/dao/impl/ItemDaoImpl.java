@@ -2,6 +2,7 @@ package mate.academy.internetshop.dao.impl;
 
 import static java.util.stream.IntStream.range;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import mate.academy.internetshop.dao.ItemDao;
 import mate.academy.internetshop.dao.Storage;
@@ -48,5 +49,10 @@ public class ItemDaoImpl implements ItemDao {
         Item item = get(id);
         Storage.items.removeIf(element -> element.equals(item));
         return item;
+    }
+
+    @Override
+    public List<Item> getAll() {
+        return Storage.items;
     }
 }

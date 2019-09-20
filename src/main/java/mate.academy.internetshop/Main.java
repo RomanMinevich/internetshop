@@ -31,7 +31,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         Item salt = new Item("Salt", 300D);
         itemService.create(salt);
         Item spice = new Item("Spice", 250D);
@@ -89,5 +88,6 @@ public class Main {
                 .peek(System.out::println)
                 .map(Order::getItems)
                 .forEach(System.out::println);
+        System.out.println(bucketService.addItem(0L, 0L).getId());
     }
 }

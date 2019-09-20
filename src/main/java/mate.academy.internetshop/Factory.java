@@ -36,7 +36,7 @@ public class Factory {
 
     public static BucketDao getBucketDao() {
         if (bucketDao == null) {
-           bucketDao = new BucketDaoImpl();
+            bucketDao = new BucketDaoImpl();
         }
         return bucketDao;
     }
