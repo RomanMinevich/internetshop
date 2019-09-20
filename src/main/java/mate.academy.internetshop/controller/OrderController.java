@@ -17,10 +17,12 @@ public class OrderController extends HttpServlet {
     @Inject
     private static OrderService orderService;
 
+    private static final Long TEMP_USER_ID = 0L;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("orders", userService.get(0L).getOrders());
+        request.setAttribute("orders", userService.get(TEMP_USER_ID).getOrders());
         request.getRequestDispatcher("/orders.jsp").forward(request, response);
     }
 

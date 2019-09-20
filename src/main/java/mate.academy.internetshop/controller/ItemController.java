@@ -17,6 +17,8 @@ public class ItemController extends HttpServlet {
     @Inject
     private static BucketService bucketService;
 
+    private static final Long TEMP_BUCKET_ID = 0L;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,7 +31,7 @@ public class ItemController extends HttpServlet {
             throws ServletException, IOException {
         String buttonId = request.getParameter("+");
         if (buttonId != null) {
-            bucketService.addItem(0L, Long.valueOf(buttonId));
+            bucketService.addItem(TEMP_BUCKET_ID, Long.valueOf(buttonId));
             System.out.println("Item added to bucket");
             response.sendRedirect(request.getContextPath() + "/items");
         }

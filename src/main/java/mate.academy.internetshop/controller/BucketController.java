@@ -17,8 +17,9 @@ public class BucketController extends HttpServlet {
     private static BucketService bucketService;
     @Inject
     private static OrderService orderService;
-    //private static final Long TEMP_USER_ID = 0L;
-    //
+
+    private static final Long TEMP_BUCKET_ID = 0L;
+    private static final Long TEMP_USER_ID = 0L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,15 +34,18 @@ public class BucketController extends HttpServlet {
         String buttonId = request.getParameter("-");
         String bigButton = request.getParameter("Complete order");
         if (buttonId != null) {
-            bucketService.removeItem(0L, Long.valueOf(buttonId));
+            bucketService.removeItem(TEMP_BUCKET_ID, Long.valueOf(buttonId));
             response.sendRedirect(request.getContextPath() + "/bucket");
         }
         if (bigButton != null) {
             if (Integer.parseInt(bigButton) > 0) {
-                Order order = orderService.completeOrder(bucketService.getAllItems(0L), 0L);
+                Order order = orderService.completeOrder(
+                        bucketService.getAllItems(TEMP_BUCKET_ID), TEMP_USER_ID);
                 orderService.create(order);
                 System.out.println("Order completed");
                 response.sendRedirect(request.getContextPath() + "/orders");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/bucket");
             }
         }
     }
