@@ -31,6 +31,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
         Item salt = new Item("Salt", 300D);
         itemService.create(salt);
         Item spice = new Item("Spice", 250D);
