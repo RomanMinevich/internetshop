@@ -17,25 +17,26 @@
             <table border="1">
                 <tr>
                     <th>ID</th>
+                    <th>Items in order</th>
                     <th>Remove from list</th>
                 </tr>
                 <c:forEach var="order" items="${orders}">
                     <tr>
                         <td><c:out value="${order.getId()}"/></td>
-<%--                        <table border="1">--%>
-<%--                            <tr>--%>
-<%--                            <th>ID</th>--%>
-<%--                            <th>Name</th>--%>
-<%--                            <th>Price</th>--%>
-<%--                            </tr>--%>
-<%--                        <c:forEach var="item" items="${items}">--%>
-<%--                            <tr>--%>
-<%--                                <td><c:out value="${item.getId()}"/></td>--%>
-<%--                                <td><c:out value="${item.getName()}"/></td>--%>
-<%--                                <td><c:out value="${item.getPrice()}"/></td>--%>
-<%--                            </tr>--%>
-<%--                        </c:forEach>--%>
-<%--                        </table>--%>
+                        <td><table border="1">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                            </tr>
+                                <c:forEach var="item" items="${order.getItems()}">
+                                    <tr>
+                                        <td><c:out value="${item.getId()}"/></td>
+                                        <td><c:out value="${item.getName()}"/></td>
+                                        <td><c:out value="${item.getPrice()}"/></td>
+                                    </tr>
+                                </c:forEach>
+                        </table></td>
                         <td><button type="submit" name="-" value="${order.getId()}">-</button></td>
                     </tr>
                 </c:forEach>
