@@ -1,4 +1,4 @@
-ackage mate.academy.internetshop.service;
+package mate.academy.internetshop.service;
 
 import java.util.List;
 import mate.academy.internetshop.model.Item;
