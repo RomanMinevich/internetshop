@@ -88,6 +88,5 @@ public class Main {
                 .peek(System.out::println)
                 .map(Order::getItems)
                 .forEach(System.out::println);
-        System.out.println(bucketService.addItem(0L, 0L).getId());
     }
 }
